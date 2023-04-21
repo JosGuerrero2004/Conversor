@@ -20,16 +20,21 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSpinner;
 
 public class MainView {
 
 	private JFrame frmConversor;
-	private JTextField txtMoneda1;
-	private JTextField txtMonedaResult;
-	private JTextField txtValor1;
-	private JTextField txtValorResult;
 	private JButton btnCambioMoneda;
 	private JButton btnCambioTemp;
+	private JComboBox<Object> cmbMonedaConvertir;
+	private JComboBox<Object> cmbMonedaResult;
+	private JComboBox<Object> cmbMagnitudConvertir;
+	private JComboBox<Object> cmbMagnitudResult;
+	private JSpinner spnMonedaResult;
+	private JSpinner spnMoneda1;
+	private JSpinner spnValor1;
+	private JSpinner spnValorResult;
 
 	/**
 	 * Launch the application.
@@ -80,45 +85,37 @@ public class MainView {
 		tpnMain.addTab("Temperatura", null, panTemperatura, null);
 		panTemperatura.setLayout(null);
 		
-		/*
-		 * *TextFields
+		/**
+		 * spinner textbox
 		 */
-		txtMoneda1 = new JTextField();
-		txtMoneda1.setFont(new Font("Hack", Font.PLAIN, 28));
-		txtMoneda1.setEditable(false);
-		txtMoneda1.setBounds(229, 101, 228, 41);
-		txtMoneda1.setText("0.00");
-		panMonedas.add(txtMoneda1);
-		txtMoneda1.setColumns(10);
 		
-		txtMonedaResult = new JTextField();
-		txtMonedaResult.setText("0.00");
-		txtMonedaResult.setFont(new Font("Hack", Font.PLAIN, 28));
-		txtMonedaResult.setColumns(10);
-		txtMonedaResult.setBounds(229, 249, 228, 41);
-		panMonedas.add(txtMonedaResult);
+		spnMoneda1 = new JSpinner();
+		spnMoneda1.setBounds(229, 101, 228, 41);
+		spnMoneda1.setFont(new Font("Hack", Font.PLAIN, 28));
+		panMonedas.add(spnMoneda1);
 		
-		txtValor1 = new JTextField();
-		txtValor1.setText("0.00");
-		txtValor1.setFont(new Font("Hack", Font.PLAIN, 28));
-		txtValor1.setEditable(false);
-		txtValor1.setColumns(10);
-		txtValor1.setBounds(229, 102, 228, 41);
-		panTemperatura.add(txtValor1);
+		spnMonedaResult = new JSpinner();
+		spnMonedaResult.setEnabled(false);
+		spnMonedaResult.setFont(new Font("Hack", Font.PLAIN, 28));
+		spnMonedaResult.setBounds(229, 249, 228, 41);
+		panMonedas.add(spnMonedaResult);
 		
-		txtValorResult = new JTextField();
-		txtValorResult.setText("0.00");
-		txtValorResult.setFont(new Font("Hack", Font.PLAIN, 28));
-		txtValorResult.setColumns(10);
-		txtValorResult.setBounds(229, 250, 228, 41);
-		panTemperatura.add(txtValorResult);
+		spnValor1 = new JSpinner();
+		spnValor1.setBounds(229, 101, 228, 41);
+		spnValor1.setFont(new Font("Hack", Font.PLAIN, 28));
+		panTemperatura.add(spnValor1);
+		
+		spnValorResult = new JSpinner();
+		spnValorResult.setEnabled(false);
+		spnValorResult.setBounds(229, 250, 228, 41);
+		spnValorResult.setFont(new Font("Hack", Font.PLAIN, 28));
+		panTemperatura.add(spnValorResult);
 		
 		/**
 		 * labels
 		 */
 		JLabel lblIngresaLaCantidad = new JLabel("Ingresa la cantidad a convertir");
 		lblIngresaLaCantidad.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblIngresaLaCantidad.setLabelFor(txtMoneda1);
 		lblIngresaLaCantidad.setBounds(186, 50, 228, 28);
 		panMonedas.add(lblIngresaLaCantidad);
 		
@@ -127,28 +124,29 @@ public class MainView {
 		lblIngreseElValor.setBounds(201, 50, 201, 28);
 		panTemperatura.add(lblIngreseElValor);
 		
-		/**
-		 * ComboBox
-		 */
-		JComboBox<Object> cmbMonedaConvertir = new JComboBox<Object>();
+		cmbMonedaConvertir = new JComboBox<Object>();
 		cmbMonedaConvertir.setFont(new Font("Hack", Font.PLAIN, 28));
 		cmbMonedaConvertir.setBounds(115, 101, 111, 41);
 		panMonedas.add(cmbMonedaConvertir);
 		
-		JComboBox<Object> cmbMonedaResult = new JComboBox<Object>();
+		cmbMonedaResult = new JComboBox<Object>();
 		cmbMonedaResult.setFont(new Font("Hack", Font.PLAIN, 28));
 		cmbMonedaResult.setBounds(115, 249, 111, 41);
 		panMonedas.add(cmbMonedaResult);
 		
-		JComboBox<Object> cmbMagnitudConvertir = new JComboBox<Object>();
-		cmbMagnitudConvertir.setFont(new Font("Hack", Font.PLAIN, 28));
+		cmbMagnitudConvertir = new JComboBox<Object>();
+		cmbMagnitudConvertir.setFont(new Font("Hack", Font.PLAIN, 20));
 		cmbMagnitudConvertir.setBounds(115, 102, 111, 41);
+		cmbMagnitudConvertir.addItem("Celsius");
+		cmbMagnitudConvertir.addItem("Fahrenheit");
 		panTemperatura.add(cmbMagnitudConvertir);
 		
-		JComboBox<Object> cmbMagnitudResult = new JComboBox<Object>();
-		cmbMagnitudResult.setFont(new Font("Hack", Font.PLAIN, 28));
+		cmbMagnitudResult = new JComboBox<Object>();
+		cmbMagnitudResult.setFont(new Font("Hack", Font.PLAIN, 20));
 		cmbMagnitudResult.setBounds(115, 250, 111, 41);
 		panTemperatura.add(cmbMagnitudResult);
+		cmbMagnitudResult.addItem("Celsius");
+		cmbMagnitudResult.addItem("Fahrenheit");
 		
 		/**
 		 * llenado de combobox
@@ -168,6 +166,8 @@ public class MainView {
 		btnCambioMoneda.setBounds(231, 178, 139, 28);
 		panMonedas.add(btnCambioMoneda);
 		
+		
+		
 		btnCambioTemp = new JButton("Cambio");
 		btnCambioTemp.setFont(new Font("Jamrul", Font.BOLD, 22));
 		btnCambioTemp.setBounds(231, 179, 139, 28);
@@ -179,11 +179,41 @@ public class MainView {
 		
 		btnCambioTemp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				Integer indexValorConvertir = cmbMagnitudConvertir.getSelectedIndex();
+				Integer indexValorResult = cmbMagnitudResult.getSelectedIndex();
+				Double valorConvertir = Double.valueOf(spnValor1.getValue().toString());
+				double resultado;
+				
+				if(indexValorConvertir != indexValorResult) {
+					if(indexValorConvertir == 0) {
+						resultado = valorConvertir * 1.8 + 32;
+						spnValorResult.setValue(resultado);
+						return;
+					}
+					resultado = (valorConvertir - 32) * (5/9);
+					spnValorResult.setValue(resultado);
+					return;
+				}
+				
+				spnValorResult.setValue(valorConvertir);
+				
 			}
 		});
 		
 		btnCambioMoneda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String moneda1 = (String) cmbMonedaConvertir.getSelectedItem();
+				String monedaAConvertir = (String) cmbMonedaResult.getSelectedItem();
+				
+				Double cantidad = Double.parseDouble(spnMoneda1.getValue().toString());
+				MonedaController resultadoMoneda = new MonedaController();
+				
+				Double resultado = resultadoMoneda.convertir(moneda1, monedaAConvertir, cantidad);
+				
+				spnMonedaResult.setValue(resultado);
+				
 			}
 		});
 		

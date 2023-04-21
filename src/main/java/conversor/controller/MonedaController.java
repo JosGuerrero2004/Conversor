@@ -14,9 +14,8 @@ import conversor.api.APIConversor;
 public class MonedaController {
 	
 	public List<String> listar(){
-		
 		APIConversor genJSON = new APIConversor();
-		genJSON.genJSON();
+		genJSON.getAPIJSON();
 		
 		List<String> list = new ArrayList<String>();
 		try {
@@ -31,6 +30,26 @@ public class MonedaController {
 			throw new RuntimeException(e);
 		}
 		return list;
+	}
+	
+	public double convertir(String moneda, String resultado, Double cantidad) {
+		
+		double totalConversion;
+		
+		
+		try {
+			String content = new String(Files.readAllBytes(Paths.get("conversiones.json")));
+			JSONObject conversionesJSON = new JSONObject(content);
+			Double valConOrigen = conversionesJSON.getJSONObject("data").getDouble(moneda);
+			Double valConFin = conversionesJSON.getJSONObject("data").getDouble(resultado);
+			
+			totalConversion = cantidad/valConOrigen*valConFin;
+			
+			return totalConversion;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		
 	}
 	
 }

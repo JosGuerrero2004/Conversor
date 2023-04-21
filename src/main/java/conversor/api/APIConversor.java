@@ -8,7 +8,7 @@ import java.net.http.HttpResponse;
 
 public class APIConversor {
 		
-		public void genJSON() {
+		public void getAPIJSON() {
 			HttpRequest request = HttpRequest.newBuilder()
 					.uri(URI.create("https://api.freecurrencyapi.com/v1/latest?apikey=2TGEJXQfHJO84wB9bqkbfGUVp7e9cN1wOO1SCrUO"))
 					.build();
@@ -24,4 +24,26 @@ public class APIConversor {
 				throw new RuntimeException(e);
 			}
 		}
+		//TODO
+		/*private void GenJSON(String monedas) {
+			
+			
+			try {
+				FileWriter conversiones = new FileWriter("conversiones.json");
+				String datosJSON = removeLastChar(monedas);
+				String ConversionTemperaturas = "";
+				datosJSON += "";
+				
+				conversiones.write(datosJSON);
+			} catch (IOException e) {
+				throw new RuntimeException();
+			}
+		}
+		
+		public static String removeLastChar(String str) {
+	        if (str == null || str.length() == 0) {
+	            return str;
+	        }
+	        return str.substring(0, str.length() - 1);
+	    }*/
 }
