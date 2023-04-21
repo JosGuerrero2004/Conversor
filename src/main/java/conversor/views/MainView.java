@@ -35,6 +35,7 @@ public class MainView {
 	private JSpinner spnMoneda1;
 	private JSpinner spnValor1;
 	private JSpinner spnValorResult;
+	private JLabel lblIngreseElValor_2;
 
 	/**
 	 * Launch the application.
@@ -125,16 +126,19 @@ public class MainView {
 		panTemperatura.add(lblIngreseElValor);
 		
 		cmbMonedaConvertir = new JComboBox<Object>();
+		cmbMonedaConvertir.setToolTipText("Seleccione la moneda a convertir");
 		cmbMonedaConvertir.setFont(new Font("Hack", Font.PLAIN, 28));
 		cmbMonedaConvertir.setBounds(115, 101, 111, 41);
 		panMonedas.add(cmbMonedaConvertir);
 		
 		cmbMonedaResult = new JComboBox<Object>();
+		cmbMonedaResult.setToolTipText("Seleccione la moneda que desea como resultado");
 		cmbMonedaResult.setFont(new Font("Hack", Font.PLAIN, 28));
 		cmbMonedaResult.setBounds(115, 249, 111, 41);
 		panMonedas.add(cmbMonedaResult);
 		
 		cmbMagnitudConvertir = new JComboBox<Object>();
+		cmbMagnitudConvertir.setToolTipText("Seleccione la temperatura que desea convertir");
 		cmbMagnitudConvertir.setFont(new Font("Hack", Font.PLAIN, 20));
 		cmbMagnitudConvertir.setBounds(115, 102, 111, 41);
 		cmbMagnitudConvertir.addItem("Celsius");
@@ -142,6 +146,7 @@ public class MainView {
 		panTemperatura.add(cmbMagnitudConvertir);
 		
 		cmbMagnitudResult = new JComboBox<Object>();
+		cmbMagnitudResult.setToolTipText("Seleccione la temperatura a la que desea convertir");
 		cmbMagnitudResult.setFont(new Font("Hack", Font.PLAIN, 20));
 		cmbMagnitudResult.setBounds(115, 250, 111, 41);
 		panTemperatura.add(cmbMagnitudResult);
@@ -166,12 +171,22 @@ public class MainView {
 		btnCambioMoneda.setBounds(231, 178, 139, 28);
 		panMonedas.add(btnCambioMoneda);
 		
+		lblIngreseElValor_2 = new JLabel("Resultado de su conversion");
+		lblIngreseElValor_2.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblIngreseElValor_2.setBounds(201, 302, 201, 28);
+		panMonedas.add(lblIngreseElValor_2);
+		
 		
 		
 		btnCambioTemp = new JButton("Cambio");
 		btnCambioTemp.setFont(new Font("Jamrul", Font.BOLD, 22));
 		btnCambioTemp.setBounds(231, 179, 139, 28);
 		panTemperatura.add(btnCambioTemp);
+		
+		JLabel lblIngreseElValor_1 = new JLabel("Resultado de su conversion");
+		lblIngreseElValor_1.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblIngreseElValor_1.setBounds(201, 303, 201, 28);
+		panTemperatura.add(lblIngreseElValor_1);
 		
 	}
 	
